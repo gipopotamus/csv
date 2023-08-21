@@ -14,19 +14,18 @@ def upload_file():
     file = request.files.get('file')
     if not file:
         return jsonify({'error': 'No file provided'}), 400
-
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
     filename = file.filename
     columns = []  # Parse the columns from the file if needed
-
-    # Save the file to the 'uploads' directory
     file_path = os.path.join('uploads', filename)
     file.save(file_path)
-
     uploaded_file = UploadedFile(filename=filename, columns=columns)
     db.session.add(uploaded_file)
     db.session.commit()
 
     return jsonify({'message': 'File uploaded successfully'}), 201
+
 
 
 @bp.route('/files', methods=['GET'])
