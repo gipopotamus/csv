@@ -1,0 +1,7 @@
+Flask~=2.3.2
+Flask-SQLAlchemy
+marshmallow~=3.20.1
+SQLAlchemy~=2.0.20
+pandas~=2.0.3
+alembic~=1.11.3
+flask_migrate
